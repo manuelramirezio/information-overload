@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="1" model="auth.user">
+        <field type="CharField" name="username">spikeekips</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">spikeekips@gmail.com</field>
+        <field type="CharField" name="password">sha1$8652a$ecaf9d357ad235accb556f0509d00d032821a3ae</field>
+        <field type="BooleanField" name="is_staff">True</field>
+        <field type="BooleanField" name="is_active">True</field>
+        <field type="BooleanField" name="is_superuser">True</field>
+        <field type="DateTimeField" name="date_joined">2010-11-11 22:56:25</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="2" model="auth.user">
+        <field type="CharField" name="username">ekips</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">spikeekips+ekips@gmail.com</field>
+        <field type="CharField" name="password"></field>
+        <field type="BooleanField" name="is_staff">True</field>
+        <field type="BooleanField" name="is_active">False</field>
+        <field type="BooleanField" name="is_superuser">True</field>
+        <field type="DateTimeField" name="date_joined">2010-11-11 22:56:25</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+
+    <object pk="3" model="auth.user">
+        <field type="CharField" name="username">Hannal</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">hannal@cloudgifts.com</field>
+        <field type="CharField" name="password">sha1$8652a$ecaf9d357ad235accb556f0509d00d032821a3ae</field>
+        <field type="BooleanField" name="is_staff">True</field>
+        <field type="BooleanField" name="is_active">True</field>
+        <field type="BooleanField" name="is_superuser">True</field>
+        <field type="DateTimeField" name="date_joined">2010-11-11 22:56:25</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+
+    <object pk="4" model="auth.user">
+        <field type="CharField" name="username">Hannal (1)</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">iam@hannal.net</field>
+        <field type="CharField" name="password"></field>
+        <field type="BooleanField" name="is_staff">True</field>
+        <field type="BooleanField" name="is_active">False</field>
+        <field type="BooleanField" name="is_superuser">True</field>
+        <field type="DateTimeField" name="date_joined">2010-11-11 22:56:25</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+
+    <object pk="5" model="auth.user">
+        <field type="CharField" name="username">All Cloudgifts</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">all@cloudgifts.com</field>
+        <field type="CharField" name="password"></field>
+        <field type="BooleanField" name="is_staff">True</field>
+        <field type="BooleanField" name="is_active">False</field>
+        <field type="BooleanField" name="is_superuser">True</field>
+        <field type="DateTimeField" name="date_joined">2010-11-11 22:56:25</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+
+    <object pk="6" model="auth.user">
+        <field type="CharField" name="username">S.Rothan</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">srothan@cloudgifts.com</field>
+        <field type="CharField" name="password"></field>
+        <field type="BooleanField" name="is_staff">True</field>
+        <field type="BooleanField" name="is_active">False</field>
+        <field type="BooleanField" name="is_superuser">True</field>
+        <field type="DateTimeField" name="date_joined">2010-11-11 22:56:25</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+
+    <object pk="1" model="developer.profile">
+        <field to="auth.user" name="user" rel="OneToOneRel">1</field>
+        <field type="CharField" name="jid"></field>
+        <field type="FileField" name="picture"></field>
+        <field type="CharField" name="nickname"></field>
+        <field to="auth.user" name="users" rel="ManyToManyRel">
+            <object pk="1"></object>
+            <object pk="2"></object>
+            <object pk="5"></object>
+            <object pk="6"></object>
+        </field>
+    </object>
+
+    <object pk="2" model="developer.profile">
+        <field to="auth.user" name="user" rel="OneToOneRel">3</field>
+        <field type="CharField" name="jid"></field>
+        <field type="FileField" name="picture"></field>
+        <field type="CharField" name="nickname">Hannal Cha</field>
+        <field to="auth.user" name="users" rel="ManyToManyRel">
+            <object pk="3"></object>
+            <object pk="4"></object>
+            <object pk="5"></object>
+        </field>
+    </object>
+
+</django-objects>
