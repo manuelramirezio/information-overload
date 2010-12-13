@@ -1,0 +1,86 @@
+.taglist
+{
+    /*
+    background: url("image/textbox-bg.png") repeat-x scroll center top white;
+    border-color: #727272 #B4B4B4 #DADADA;
+    border-left: 1px solid #B4B4B4;
+    border-right: 1px solid #B4B4B4;
+    border-style: solid;
+    border-width: 1px;
+    padding: 3px;
+    font-family: sans-serif;
+    font-size: 13px;
+    cursor: text;
+    */
+    overflow: hidden;
+    display: inline-block;
+    min-width: 10em;
+
+    width: 100%;
+    background-color: #fafafa;
+    outline: none;
+    padding: 0.3em 0.5em;
+    margin: 0;
+}
+
+.taglist li.tag {
+    /*
+    background: none repeat scroll 0 0 #EEEEEE;
+    list-style: none;
+    float: left;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border-radius: 6px 6px 6px 6px;
+    border: 1px solid #CCCCCC;
+    cursor: default;
+    padding: 1px 2px 1px 4px;
+    margin: 0 4px 3px 0;
+    */
+
+    list-style: none;
+    float: left;
+    display: inline-block;
+    color: #333;
+    cursor: pointer;
+    border: 0.1em solid #999;
+    font-size: 1em;
+    padding: 0.3em 0.5em;
+    border-radius: 0.4em;
+    background-color: #EAF7D6;
+    margin: 0 0.3em 0.2em 0;
+    font-family: monospace;
+}
+
+.taglist li.input {
+    list-style: none;
+    float:left;
+}
+
+.taglist li.input input {
+    border: medium none;
+    cursor: default;
+    margin: 0;
+    outline: 0 none;
+    padding: 3px 0 2px;
+    width: 150px;
+}
+
+.taglist li.tag a.delete span {
+    visibility: hidden;
+}
+
+.taglist li.tag a.delete
+{
+    display: none;
+}
+
+/*
+.taglist li.tag a.delete {
+    background: url("image/to-delete.png") no-repeat 5px 5px;
+    width: 8px;
+    height: 7px;
+    text-decoration: none;
+    cursor: pointer;
+}
+*/
+
+

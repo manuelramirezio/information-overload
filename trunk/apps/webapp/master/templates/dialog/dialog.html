@@ -1,0 +1,59 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags developer_tags version_control_tags dialog_tags %}
+
+{% block extrahead %}
+    {{block.super}}
+	<link href="{{STATICFILES_URL}}js/jquery/jquery.tag.css" rel="stylesheet" type="text/css"
+        media="screen" />
+	<script src="{{STATICFILES_URL}}js/jquery/jquery.tag.js"
+        rel="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block title %}{{object.subject|default:"&lt;No Subject&gt;"}}{% endblock %}
+{% block content_title %}
+    <span class="subject">{{object.subject|default:"&lt;No Subject&gt;"}}</span>
+{% endblock %}
+
+{% block nav_content %}
+<dl class="menu">
+    <dt><label>In this dialog</label></dt>
+    <dd>
+    <ol>
+        {% with request.session|getitem:"dialogs.path.latest" as path %}
+        {% if path %}
+        <li> <a href="{{path}}">Go back to dialogs</a> </li>
+        {% endif %}
+        {% endwith %}
+        {% for message in object.dialog %}
+        <li class="item message">
+            <span class="subject"><a href="#{{message.uid}}"
+                >{{message.subject|default:"&lt;No Subject&gt;"}}</a></span>
+        </li>
+        {% endfor %}
+    </ol>
+    </dd>
+</dl>
+
+<div class="help">
+    <p>
+        Join this dialog, just send email to
+        <span class="email">{{object.parent_top.join_email}}</span>
+    </p>
+    <p>
+        Or, just insert message unique code in your email message like this.
+        <pre class="box code">{{object.reference_tag}}</pre>
+    </p>
+</div>
+
+{% endblock %}
+
+{% block content %}
+{% with object.dialog as objects %}
+    {% include "dialog/_dialog.html" %}
+{% endwith %}
+
+<script type="text/javascript">
+{% include "dialog/message_common.js" %}
+</script>
+
+{% endblock %}

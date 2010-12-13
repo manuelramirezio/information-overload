@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>Layout Page | I.O</title>
+
+	<link href="/_m/css/base.css" rel="stylesheet" type="text/css"
+        media="screen" />
+	<link
+        href="/_m/js/jquery/jqueryui/css/custom-theme/jquery-ui-1.8.6.custom.css"
+        rel="stylesheet" type="text/css" media="screen" />
+
+	<script src="/_m/js/jquery/jquery-1.4.4.js" rel="javascript"
+        type="text/javascript"></script>
+	<script src="/_m/js/jquery/jqueryui/js/jquery-ui-1.8.6.custom.min.js"
+        rel="javascript" type="text/javascript"></script>
+
+<style type="text/css">
+.block
+{
+    border: 1px solid gray;
+    padding: 0.5em;
+    margin: 0.5em;
+    width: 45%;
+    float: left;
+}
+
+.block > h1:first-child
+{
+    margin:0;
+    text-decoration: underline;
+}
+
+/* defined */
+</style>
+
+</head>
+<body>
+
+<div class="block"
+>
+<h1> Logo </h1>
+
+<span class="logo">I.O.</span>
+<span class="logo"
+    style="
+        display: inline-block;
+        -webkit-transform: rotate(-90deg);
+    "
+>I.O.</span>
+
+<br />
+<br />
+<br />
+</div>
+
+<div class="block">
+<h1> Text Box </h1>
+
+<p>Vestibulum semper, accumsan ullamcorper non mi ultrices nisl. Risus phasellus nisl arcu curabitur pellentesque parturient pede magnis. Potenti elit, cum amet amet, et consectetuer dapibus. Cum eu consectetuer pede euismod metus sit quis a pede parturient. Cubilia. Iaculis, nulla ipsum laoreet nunc lobortis porttitor ut, habitasse. Commodo.
+</p>
+</div>
+
+<div class="block">
+<h1> Link </h1>
+
+<p>Vestibulum <a href="">semper</a>, accumsan ullamcorper non mi ultrices nisl.
+Risus phasellus nisl arcu curabitur pellentesque parturient pede magnis. Potenti
+elit, cum amet amet, et consectetuer dapibus. Cum eu consectetuer pede euismod
+metus sit quis a pede parturient. Cubilia. Iaculis, nulla ipsum laoreet nunc
+lobortis porttitor ut, <a href="">habitasse</a>. Commodo.
+</p>
+</div>
+
+<div class="block">
+<h1> Form: input </h1>
+
+<input type="number" step="100" value="0" />
+<br />
+<input type="email" placeholder="Vestibulum@dir.com" />
+<br />
+<input type="text" value="Vestibulum" />
+<br />
+<input type="password" value="Vestibulum" />
+<br />
+<br />
+
+<input type="submit" value="Submit" />
+<button>Button</button>
+<br />
+<br />
+
+<input type="checkbox" value="Vestibulum" /><label>Checkbox</label>
+<input type="checkbox" value="Vestibulum" checked /><label>Checkbox</label>
+<br />
+<input type="radio" value="Vestibulum" /><label>Radio</label>
+<br />
+
+</div>
+
+<div class="block">
+<h1> Form: formset </h1>
+
+<form>
+<fieldset>
+    <div>
+        <label>Email</label>
+        <div>
+        <input type="email" name="email" value="dir@dir.com" />
+        <span>
+    Conulibero eros lorem eu sed metus. Fermentum mattis nulla scelerisque bibendum, hendrerit turpis massa adipiscing. Mauris. Platea habitasse 
+    Conulibero eros lorem eu sed metus. Fermentum mattis nulla scelerisque bibendum, hendrerit turpis massa adipiscing. Mauris. Platea habitasse 
+        </span>
+        </div>
+    </div>
+    <div>
+        <label>Select file</label>
+        <div>
+        <input type="file" name="password" value="dir@dir.com" required />
+        </div>
+    </div>
+    <div>
+        <label>Password:</label>
+        <div></div>
+    </div>
+    <div>
+        <label>Password</label>
+        <div>
+        <input type="password" name="password" value="dir@dir.com" required />
+        <span>
+    Conubia libero eros lorem eu sed metus. Fermentum mattis nulla scelerisque bibendum, hendrerit turpis massa adipiscing. Mauris. Platea habitasse 
+        </span>
+        </div>
+    </div>
+</fieldset>
+
+<div class="submit-row">
+    <input type="submit" value="Submit" />
+</div>
+
+</form>
+
+</div>
+
+<div class="block">
+<h1> Listing </h1>
+
+<ol>
+    <li>Tempus</li>
+    <li>non aliquet mollis</li>
+    <li>eni parturient et</li>
+    <li>arcu netus potenti. Sodales. Dolor luctus vestibulum velit duis</li>
+    <li>suspendisse integer</li>
+    <li>condimentum nisl. Molestie imperdiet maecenas.</li>
+</ol>
+
+<ul>
+    <li>Tempus</li>
+    <li>non aliquet mollis</li>
+    <li>eni parturient et</li>
+    <li>arcu netus potenti. Sodales. Dolor luctus vestibulum velit duis</li>
+    <li>suspendisse integer</li>
+    <li>condimentum nisl. Molestie imperdiet maecenas.</li>
+</ul>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</div>
+
+<div class="block">
+<h1> Heading </h1>
+
+<h1>h1, Tempus</h1>
+<h2>h2, non ah2quet molh2s</h2>
+<h3>h3, eni parturient et</h3>
+<h4>h4, arcu netus potenti. Sodales. Dolor luctus vestibulum veh4t duis</h4>
+<br />
+<br />
+<br />
+<br />
+</div>
+
+<div class="block">
+<h1> File content diff view </h1>
+
+<div class="code">
+<div class="caption">
+    /a/b/c/d.txt
+</div>
+<div class="table">
+    <div class="row">
+        <div class="cell linenumber">
+            1
+        </div>
+        <div class="cell content">
+            <div class="diff deleted">Luctus adipiscing augue duis.</div>
+            <div class="diff modified">Luctus adipiscing augue duis.</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell linenumber">
+            2
+        </div>
+        <div class="cell content">
+            <div class="diff added">Luctus adipiscing augue duis. </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell linenumber">
+            3
+        </div>
+        <div class="cell content">
+            <div class="diff added">Luctus adipiscing augue duis. Overflowed Penatibus. Eros dolor dapibus massa eget facilisi dignissim et. Tempus ve curabitur. Condimentum. Fames conubia mi elementum penatibus orci nam pellentesque et. Arcu hymenaeos ac elit inceptos rhoncus, blandit nibh volutpat diam, viverra at, nisl molestie mattis. Conubia fermentum eros sit class parturient nibh etiam pretium cum tincidunt. Sagittis ultrices eu. Diam, laoreet. Quis parturient cum porta taciti taciti et tempus. </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<br />
+<br />
+
+</div>
+
+<div class="block">
+<h1> Side Menu </h1>
+
+<nav style="width: 20em; border: 1px solid green;">
+    <ul style="">
+        <li><a href="">Tempus</a></li>
+        <li><a href="">non aliquet mollis</a></li>
+        <li><a href="">eni parturient et</a></li>
+        <li><a href="">arcu netus potenti. Sodales. Dolor luctus vestibulum velit duis</a></li>
+        <li><a href="">arcu netus potenti. Sodales. Dolor luctus vestibulum velit duis</a></li>
+        <li><a href="">arcu netus potenti. Sodales. Dolor luctus vestibulum velit duis</a></li>
+    </ul>
+</nav>
+
+<br />
+<br />
+<br />
+</div>
+
+<div class="block">
+<h1> Message </h1>
+
+<h2>Note</h2>
+<span class="message">
+    <span class="note">
+        This is note message.
+    </span>
+</span>
+
+<h2>Error</h2>
+<span class="message">
+    <span class="error">
+        This is error message.
+    </span>
+</span>
+
+<h2>Info</h2>
+<span class="message">
+    <span class="info">
+        This is info message.
+    </span>
+</span>
+
+<h2>Debug</h2>
+<span class="message">
+    <span class="debug">
+        This is debug message.
+    </span>
+</span>
+
+<h2>Warning</h2>
+<span class="message">
+    <span class="warning">
+        This is warning message.
+    </span>
+</span>
+
+<br />
+<br />
+</div>
+
+</body>
+</html>

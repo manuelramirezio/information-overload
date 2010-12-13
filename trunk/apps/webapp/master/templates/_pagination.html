@@ -1,0 +1,35 @@
+<div class="pagination">
+    {% if not pagination_remove_info %}
+    <div class="box1 align-left">
+        {{page.start_index}} - {{page.end_index}} of {{page.paginator.count}} items
+    </div>
+    {% endif %}
+
+    <div class="box2 align-right">
+    {% if not page.has_previous or page.number == 2 %}
+        ◀◀ newest
+    {% else %}
+        ◀◀ <a href="?p=1">newest</a>
+    {% endif %}
+
+    {% if page.has_previous %}
+        ◀ <a href="?p={{page.previous_page_number}}">newer</a>
+    {% else %}
+        ◀ newer
+    {% endif %}
+
+    &nbsp;
+
+    {% if page.next_page_number <= page.paginator.num_pages  %}
+        <a href="?p={{page.next_page_number}}">older</a>
+    {% else %}
+        older
+    {% endif %} ►
+
+    {% if page.next_page_number >= page.paginator.num_pages  %}
+        oldest ►►
+    {% else %}
+        <a href="?p={{page.paginator.num_pages}}">oldest</a> ►►
+    {% endif %}
+    </div>
+</div>

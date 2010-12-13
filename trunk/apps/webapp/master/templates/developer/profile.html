@@ -1,0 +1,129 @@
+{% extends "developer/base_profile.html" %}
+{% load i18n common_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block content_title %}{{object}} {% if user.profile == object %}(Me){% endif %}{% endblock %}
+
+{% block profile-image %}
+    <img src="{{object.profile.profile_picture}}" />
+{% endblock %}
+
+{% block content-profile %}
+<fieldset>
+    <div>
+        <label>Login Name</label>
+        <div>
+            {{object.profile.user.username}}
+        </div>
+    </div>
+    <div>
+        <label>Email</label>
+        <div>
+            <span class="email">{{object.profile.user.email|urlize}}</span>
+        </div>
+    </div>
+    <div>
+        <label>Joined at</label>
+        <div>
+            {{object.profile.user.date_joined}}
+            ({{object.profile.user.date_joined|timeago}})
+        </div>
+    </div>
+    <div>
+        <label>Last Login</label>
+        <div>
+            {{object.profile.user.last_login}}
+            ({{object.profile.user.last_login|timeago}})
+        </div>
+    </div>
+    <div>
+        <label>Aliases</label>
+        <div>
+            <h3>In Dialog</h3>
+            <ul>
+            {% for u in object.profile.aliases %}
+                <li>
+                    <span class="email">
+                    {{u.email|urlize}}
+                    {% if user == object %}
+                    <a
+                        class="action symbol"
+                        alt="Remove"
+                        title="Remove"
+                        href="#">✖</a>
+                    {% endif %}
+                    </span>
+                </li>
+            {% endfor %}
+                {% if user == object %}
+                <li>
+                    <form
+                        enctype="multipart/form-data"
+                        action="" method="POST">
+                    {% csrf_token %}
+                    {{forms.ConfirmNewEmail.form_name}}
+                    {% print_message forms.ConfirmNewEmail.errors.email %}
+                    {{forms.ConfirmNewEmail.email}}
+                    <input type="submit" name="add" value="Add" />
+                    </form>
+                </li>
+                {% endif %}
+            </ul>
+
+            <h3>In Version Control</h3>
+            <ul>
+            {% if not object.profile.version_control_profiles.all.count %}
+                <li>Nothing</li>
+            {% endif %}
+
+            {% for author in object.profile.version_control_profiles.all %}
+                <li>
+                    <a href="{% url version_control_revision_index project=author.info.project.code name=author.info.name %}"
+                        >{{author.name}}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div>
+        <label>Projects</label>
+        <div>
+            <ul>
+                {% for p in my_projects %}
+                    <li>
+                        <a href="{% url project project=p.code %}"
+                            >{{p}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% if user == object %}
+    <div>
+        <label>Change Password</label>
+        <div>
+            <a href="{% url password_change %}">change password</a>
+        </div>
+    </div>
+    <div>
+        <label>Change Profile Picture</label>
+        <div>
+            <form
+                enctype="multipart/form-data"
+                action="" method="POST">
+            {% csrf_token %}
+            {{forms.ChangeProfilePicture.form_name}}
+
+            {{forms.ChangeProfilePicture.errors.my_picture}}
+            {{forms.ChangeProfilePicture.my_picture}}
+            <input type="submit" name="change" value="Change" />
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</fieldset>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags developer_tags version_control_tags %}
+
+{% block title %}{{project}}{% endblock %}
+{% block content_title %}
+    Project: {{project}}
+{% endblock %}
+
+{% block nav_content %}
+<dl class="menu">
+    <dt><label>Version Controls</label></dt>
+    <dd>
+        <ol>
+    {% for vc in project.version_control.all %}
+        <li class="item">
+            <a href="{% url version_control_revision_index project=vc.project.code name=vc.name %}"
+                >{{vc.name}}</a>
+        </li>
+    {% endfor %}
+        </ol>
+    </dd>
+</dl>
+
+<div class="help">
+    <div class"join">
+        Add dialog to this project, `<span class="code">{{project.name}}</span>`.
+        Just insert project code name in your email message like this.
+        <pre class="box code">{{project.reference_tag}}</pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<h3>General</h3>
+
+<fieldset>
+    <div>
+        <label>Name</label>
+        <div>
+            <span class="code">{{project.name}}</span>
+            (code: <span class="code">{{project.code}}</span>)
+        </div>
+    </div>
+
+    <div>
+        <label>Created at</label>
+        <div>
+            {{project.time_added}}
+        </div>
+    </div>
+</fieldset>
+
+<h3>In Version Control</h3>
+{% for vc in project.version_control.all %}
+<fieldset>
+    <div>
+        <label>Name</label>
+        <div>
+                {% if not vc.latest_revision %}
+                    <span class="code">{{vc.name}}</span>
+                    <div>
+                        <span class="msg"><span class="error"
+                            >Not yet merged or committed</span></span>
+                    </div>
+                {% else %}
+                    <span class="code">
+                    <a href="{% url version_control_revision_index project=vc.project.code name=vc.name %}"
+                    >{{vc.name}}</a>
+                    </span>
+                {% endif %}
+        </div>
+    </div>
+    <div>
+        <label>Repository URL</label>
+        <div>
+            <span class="code">{{vc.repository_url}}</span>
+        </div>
+    </div>
+    <div>
+        <label>Last Revision</label>
+        <div>
+            {% if vc.revision.all.count < 1 %}
+                <div>
+                    <span class="msg"><span class="error"
+                        >Not yet merged or committed</span></span>
+                </div>
+            {% else %}
+                {% revision info=vc to_revision=vc.latest_revision.number %}
+                <p>
+                (commited at
+                    {{vc.revision.all.0.time_commit}}
+                by {% author vc.revision.all.0.author %})
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <label>Participants</label>
+        <div>
+            <ul>
+                {% for p in vc.participants %}
+                    <li>
+                        {% author p "show me" %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</fieldset>
+{% endfor %}
+
+<h3>Dialogs</h3>
+
+{% endblock %}
