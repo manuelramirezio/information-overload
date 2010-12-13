@@ -1,0 +1,51 @@
+{% load i18n common_tags developer_tags version_control_tags dialog_tags %}
+{% include_media %}
+    {% with user|get_profile_message:object as profile_message %}
+    {% with object.count_messages as cnt %}
+    <div class="row message"
+        data-url="{% url dialog_message message_uid=object.uid %}"
+    >
+        <div class="cell" style="width: 1%;">
+            <span class="profile">
+                {% message_profile object.sender %}
+            </span>
+        </div>
+        <div class="cell" style="border-right-width: 0;">
+            <span class=" subject">
+                <span class="mark_star"><a
+                    class="action {{profile_message.is_starred|yesno:"is_starred,"}}"
+                    data-is_starred="{{profile_message.is_starred|yesno}}"
+                    data-action="{{profile_message.is_starred|yesno:"unstar,star"}}"
+                    data-url="{% url dialog_message_action message_uid=object.uid %}"
+                    href="{% url dialog_message_action message_uid=object.uid %}"></a>
+                </span>
+                <span class="subject-content">
+                    <a href="{% url dialog_message message_uid=object.uid %}"
+                        >{{object.subject|default:"&lt;No Subject&gt;"}}</a>
+                    <span class="count">{% if cnt > 1 %}({{cnt}}){% endif %}</span>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </span>
+            </span>
+        </div>
+        <div class="cell" style="width: 1%;">
+            <div class="time_sent">
+                {{object.time_sent|timeago}}
+            </div>
+        </div>
+    </div>
+{% endwith %}
+{% endwith %}

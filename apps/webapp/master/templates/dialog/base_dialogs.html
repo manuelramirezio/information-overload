@@ -1,0 +1,80 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags developer_tags version_control_tags dialog_tags %}
+
+{% block extrahead %}{{block.super}}{% include_media %}{% endblock %}
+
+{% block title %}Dialogs: {{labels|join:", "}}{% endblock %}
+{% block content_title %}
+    Dialogs:
+    {% for l in labels %}
+        <a href="{% url dialog_developer_by_labels labels=l.name username=user.username %}"
+            >{{l.name}}</a>{% if not forloop.last %},{% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+<div class="table-actions dialogs">
+{% if not hide_pagination %}
+<div class="control">
+    {% with "1" as pagination_remove_info %}
+        {% include "_pagination.html" %}
+    {% endwith %}
+</div>
+{% endif %}
+<div class="control">
+    <div class="align-right">
+        {% with page.object_list.0 as object_last %}
+        {% with object_last|get_message as object %}
+
+        <a class="button {% if object %}action{% endif %}" href="#"
+            {% if not object %}disabled{% endif %}
+            {% if object %}
+                data-action="archive_all"
+                data-url="{% url dialog_message_action message_uid=object.uid %}"
+                href="{% url dialog_message_action message_uid=object.uid %}"
+            {% endif %}
+        {% endwith %}
+        {% endwith %}
+        >Archive All</a>
+    </div>
+</div>
+
+<div class="table">
+{% block message-list %}
+    {% for object in page.object_list %}
+        {% include "dialog/_dialogs.html" %}
+    {% endfor %}
+{% endblock %}
+{% if not hide_remain_rows %}
+{% if page.object_list.count < page.paginator.per_page %}
+    {% with page.paginator.per_page|subtract:page.object_list.count|get_range as ll %}
+    {% for none in ll %}
+        <div class="row message empty">
+            <div class="cell" style="border-right-width: 0;">
+                <span class="subject">&nbsp;</span>
+            </div>
+            <div class="cell" style="width: 30%;">
+                <span class="sender">&nbsp;</span>
+            </div>
+            <div class="cell" style="width: 1%;">
+                <span class="time_sent">&nbsp;</span>
+            </div>
+        </div>
+    {% endfor %}
+    {% endwith %}
+{% endif %}
+{% endif %}
+</div>
+
+{% if not hide_pagination %}
+<div class="control">
+    {% include "_pagination.html" %}
+</div>
+{% endif %}
+</div>
+
+<script type="text/javascript">
+{% include "dialog/message_common.js" %}
+</script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "dialog/base_dialogs.html" %}
+
+
+{% block extrahead %}
+    {{block.super}}
+	<link href="{{STATICFILES_URL}}js/jquery/jquery.tag.css" rel="stylesheet" type="text/css"
+        media="screen" />
+	<script src="{{STATICFILES_URL}}js/jquery/jquery.tag.js"
+        rel="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block message-list %}
+{% for message in page.object_list %}
+    {% with message.message as object %}
+    {% include "dialog/_dialogs.html" %}
+    {% endwith %}
+{% endfor %}
+{% endblock %}

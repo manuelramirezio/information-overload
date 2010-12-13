@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>Layout Page | I.O</title>
+
+	<link href="/_m/css/base.css" rel="stylesheet" type="text/css"
+        media="screen" />
+	<link
+        href="/_m/js/jquery/jqueryui/css/custom-theme/jquery-ui-1.8.6.custom.css"
+        rel="stylesheet" type="text/css" media="screen" />
+
+	<script src="/_m/js/jquery/jquery-1.4.4.js" rel="javascript"
+        type="text/javascript"></script>
+	<script src="/_m/js/jquery/jqueryui/js/jquery-ui-1.8.6.custom.min.js"
+        rel="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+
+<nav>
+    <a class="logo" href="/">I.O</a>
+
+    <div class="developer">
+        <div class="picture">
+            <img src="/_m/image/unknown.png" />
+            <br />
+            <a href="">spikeekips &lt;spikeekips@gmail.com&gt;</a>
+            <br />
+            <br />
+            <a href="/accounts/logout/">Logout</a>
+        </div>
+    </div>
+
+     <h2>Projects</h2>
+    <ul>
+        <li><a href="{% url project project=project.code %}"
+            >{{project}}</a></li>
+    </ul>
+</nav>
+
+<div id="content">
+
+<header>
+This is header
+</header>
+
+<div class="messages">
+    <span class="message"><span class="error">{{message}}</span></span>
+    <span class="message"><span class="info">{{message}}</span></span>
+    <span class="message"><span class="warning">{{message}}</span></span>
+</div>
+
+<div id="content-main">
+
+<p>
+Turpis class. Eu taciti. Cubilia nibh, ac morbi tristique. Ac, nullam porta varius. Nostra tincidunt platea sit parturient ut, sagittis. Ve nunc condimentum natoque massa orci malesuada fames, a quam justo sociosqu, tristique sem. Tortor netus, lacinia. Pede adipiscing rutrum ac dapibus elit, odio habitasse auctor, proin convallis quam arcu. Dui orci duis nibh fringilla quis est vivamus. Nec. Tellus gravida, lacinia mollis proin massa laoreet pretium quis ut massa. Praesent ipsum volutpat convallis purus ac lacus est nibh aliquam porttitor.
+</p>
+
+</div>
+</div>
+
+<footer>
+&copy;2011 I.O. is a registered trademark of the Spike^ekipS &lt;spikeekips@gmail.com&gt;.
+</footer>
+
+
+</body>
+</html>

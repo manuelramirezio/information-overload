@@ -1,0 +1,73 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+{% block nav %}{% endblock %}
+
+{% block message %}
+    {{block.super}}
+    {% for error in form|normalize_error %}
+        <span class="message"><span class="error">{{error}}</span></span>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+
+<div class="login-form">
+
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+<div class="table">
+    <div class="row">
+        <div class="cell">
+            <span class="logo"
+                style="
+                    display: inline-block;
+                    -webkit-transform: rotate(-90deg);
+                    font-size: 8em;
+                "
+            >I.O.</span>
+        </div>
+
+        <div class="cell">
+            <input type="hidden" name="this_is_the_login_form" value="1" />
+
+            <fieldset>
+                <div>
+                    <div>
+                        <input type="text" name="username" id="id_username"
+                            placeholder="Type your username"
+                        />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <input type="password" name="password" id="id_password"
+                            placeholder="Type your password"
+                        />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="cell">
+            <input type="submit" value="{% trans "Authenticate" %}" />
+        </div>
+    </div>
+</div>
+</form>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(
+    function()
+    {
+        $("#id_username").focus();
+    }
+);
+</script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block title %}Confirmed {{email}}{% endblock %}
+
+{% block content_title %}
+    {% if is_valid %} 
+        Successfully confirmed your email, '{{email}}'.
+    {% else %}
+        Failed to confirm your email, '{{email}}', Please add it again in your profile page. 
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}

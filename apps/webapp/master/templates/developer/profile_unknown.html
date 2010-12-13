@@ -1,0 +1,42 @@
+{% extends "developer/base_profile.html" %}
+{% load i18n common_tags developer_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block title %}Unknown Profile: {{object.email}}{% endblock %}
+{% block content_title %}Unknown Profile: {{object.email}}{% endblock %}
+
+{% block content-profile %}
+<fieldset>
+    <div>
+        <label>Email</label>
+        <div>
+            <span class="email">{{object.email|urlize}}</span>
+        </div>
+    </div>
+    <div>
+        <label>Joined at</label>
+        <div>
+            {{object.date_joined}}
+            ({{object.date_joined|timeago}})
+        </div>
+    </div>
+    <div>
+        <label>This is me!</label>
+        <div>
+            <form action="{% url developer username=object.username %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{object.email}}" />
+            <input type="hidden" name="form_name" value="ConfirmNewEmail" />
+            <input type="submit" name="add" value="Add this user to my profile" />
+            </form>
+            <p>
+            We will send the confirmation email message to this address, '{{object.email}}'.
+            </p>
+        </div>
+    </div>
+</fieldset>
+{% endblock %}
