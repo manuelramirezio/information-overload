@@ -1,0 +1,47 @@
+                                                                                                                                                                                                                                                               
+Return-Path: <spikeekips@gmail.com>
+Received: from [10.0.2.2] ([110.15.85.138])
+        by mx.google.com with ESMTPS id v19sm6688300wfh.0.2010.11.28.16.27.51
+        (version=TLSv1/SSLv3 cipher=RC4-MD5);
+        Sun, 28 Nov 2010 16:27:54 -0800 (PST)
+Subject: =?utf-8?Q?RE:Article:_Gitbox_=E2=80=94_Git_version_control_on_the_M?=
+ =?utf-8?Q?ac?=
+From: Spike^ekipS <spikeekips@gmail.com>
+Content-Type: multipart/alternative; boundary=Apple-Mail-2--848999712
+Message-Id: <080223327-006D-4E7F-BBE2-7DE9692D4F8D@gmail.com>
+Date: Mon, 29 Nov 2010 09:33:32 +0900
+To: Spike^ekipS <spikeekips@gmail.com>
+Bcc: Spike^ekipS <spikeekips+ekips@gmail.com>, Spike^ekipS <spikeekips+ekips0@gmail.com>
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (iPad Mail 8C5115c)
+In-Reply-To: <80223327-006D-4E7F-BBE2-7DE9692D4F8D@gmail.com>
+X-Mailer: iPad Mail (8C5115c)
+
+
+--Apple-Mail-2--848999712
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+Gitbox =E2=80=94 Git version control on the Mac
+http://gitboxapp.com/
+
+(Sent from Flipboard)
+
+
+Sent from my iPad=
+
+--Apple-Mail-2--848999712
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><body bgcolor=3D"#FFFFFF"><div><br><strong>Gitbox =E2=80=94 Git versio=
+n control on the Mac</strong><br><a href=3D"http://gitboxapp.com/"><a href=3D=
+"http://gitboxapp.com/">http://gitboxapp.com/</a></a><br><br>(Sent from <a h=
+ref=3D"http://flipboard.com">Flipboard</a>)</div><div></div><div><br><br>Sen=
+t from my iPad</div></body></html>=
+
+--Apple-Mail-2--848999712--
+

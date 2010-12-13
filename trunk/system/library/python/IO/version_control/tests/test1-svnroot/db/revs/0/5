@@ -1,0 +1,33 @@
+id: 0-5.0.r5/0
+type: dir
+count: 0
+cpath: /d3
+copyroot: 0 /
+
+PLAIN
+K 2
+d1
+V 16
+dir 0-1.0.r4/382
+K 2
+d2
+V 16
+dir 0-2.0.r2/428
+K 2
+d3
+V 14
+dir 0-5.0.r5/0
+END
+ENDREP
+id: 0.0.r5/162
+type: dir
+pred: 0.0.r4/591
+count: 5
+text: 5 60 89 89 29b2b1a86d8042a790a7bdf52bcfc0a4
+cpath: /
+copyroot: 0 /
+
+_0.0.t4-4 add-dir false false /d3
+
+
+162 287

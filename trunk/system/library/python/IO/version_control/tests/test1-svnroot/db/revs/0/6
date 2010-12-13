@@ -1,0 +1,46 @@
+PLAIN
+K 6
+f1.txt
+V 16
+file 2-1.0.r4/70
+K 13
+revision4.txt
+V 17
+file 1-3.0.r3/186
+END
+ENDREP
+id: 0-1.0.r6/92
+type: dir
+pred: 0-1.0.r4/382
+count: 3
+text: 6 0 79 79 b46500d57390028ebc151b91e7b99a04
+cpath: /d1
+copyroot: 0 /
+
+PLAIN
+K 2
+d1
+V 15
+dir 0-1.0.r6/92
+K 2
+d2
+V 16
+dir 0-2.0.r2/428
+K 2
+d3
+V 14
+dir 0-5.0.r5/0
+END
+ENDREP
+id: 0.0.r6/322
+type: dir
+pred: 0.0.r5/162
+count: 6
+text: 6 221 88 88 08e7ae1a52f8bef619547113fe74177b
+cpath: /
+copyroot: 0 /
+
+4-1.0.r1/536 delete-file false false /d1/f2.txt
+
+
+322 448
