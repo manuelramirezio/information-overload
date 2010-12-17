@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 import models as models_version_control
 
-class AuthroModelAdmin (admin.ModelAdmin, ) :
+class AuthorModelAdmin (admin.ModelAdmin, ) :
     list_display = ("name", "link_info", "link_profile", )
     list_display_links = ("name", )
 
@@ -39,9 +39,10 @@ admin_site_raw.register(models_version_control.File, )
 admin_site_raw.register(models_version_control.Revision, )
 admin_site_raw.register(models_version_control.RevisionFile, )
 admin_site_raw.register(models_version_control.Author, )
+admin_site_raw.register(models_version_control.Message, )
 
 admin_site.register(models_version_control.Info, )
-admin_site.register(models_version_control.Author, AuthroModelAdmin, )
+admin_site.register(models_version_control.Author, AuthorModelAdmin, )
 
 
 

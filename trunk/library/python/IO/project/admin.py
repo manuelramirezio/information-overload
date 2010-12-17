@@ -6,6 +6,7 @@ import models as models_project
 
 admin_site.register(models_project.Item, )
 admin_site_raw.register(models_project.Item, )
+admin_site_raw.register(models_project.Message, )
 
 
 
