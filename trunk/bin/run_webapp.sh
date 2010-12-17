@@ -33,10 +33,10 @@ fi
 _ff=`dirname $0`; _ff=`(cd $_ff; pwd)`
 ff=$_ff/`basename $0`
 
-_cur=`dirname $0`/../../
+_cur=`dirname $0`/../
 root=`(cd $_cur; pwd)`
 
-source $root/system/bin/env
+source $root/bin/env
 
 pid=/tmp/I.O-$port.pid
 
@@ -46,14 +46,14 @@ case $1 in
 
         export DJANGO_SETTINGS_MODULE="master.settings"
 
-		python `which twistd` -r $reactor -y $root/system/library/python/server.py --pidfile=$pid --prefix=$port
+		python `which twistd` -r $reactor -y $root/library/python/server.py --pidfile=$pid --prefix=$port
 	;;
 	stand)
         cd $root/apps/webapp
 
         export DJANGO_SETTINGS_MODULE="master.settings"
 
-		python `which twistd` -r $reactor -ny $root/system/library/python/server.py --pidfile=$pid --prefix=$port
+		python `which twistd` -r $reactor -ny $root/library/python/server.py --pidfile=$pid --prefix=$port
 	;;
 	stop)
         if [ ! -f $pid ];then
