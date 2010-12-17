@@ -34,8 +34,8 @@ urlpatterns += patterns("",
     (r"^.*/login/", "master.views.views_auth.login", ),
     (r"^.*/logout/", "django.contrib.auth.views.logout_then_login", ),
 
-    (r"^admin/", include(admin_site.urls), ),
     (r"^admin/raw/", include(admin_site_raw.urls), ),
+    (r"^admin/", include(admin_site.urls), ),
 
     (r"^accounts/", include(urls_auth), ),
 

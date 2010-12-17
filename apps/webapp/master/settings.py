@@ -42,6 +42,8 @@ MEDIA_ROOT = ""
 MEDIA_URL = "/_media/"
 STATICFILES_ROOT = "/tmp/_static/"
 STATICFILES_URL = "/_m/"
+STATIC_URL = "/_m/"
+STATIC_ROOT = "/tmp/_static/"
 ADMIN_MEDIA_PREFIX = "/static/admin/"
 
 STATICFILES_DIRS = (
@@ -82,10 +84,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
+    'django.core.context_processors.static',
 
     "django_modules.context_processors.read_settings",
     "master.context_processors.projects",
     "master.context_processors.profile_labels",
+    
 )
 INSTALLED_APPS = (
     "django.contrib.auth",
