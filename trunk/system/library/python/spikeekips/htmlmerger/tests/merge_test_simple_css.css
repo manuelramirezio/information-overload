@@ -1,0 +1,10 @@
+@import url("http://go.daum.net/css/minidaum2008.css?ver=20100419v1");
+
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,form,fieldset,p,button{margin:0;padding:0;}
+body,h1,h2,h3,h4,th,td,input{color:#333;font-family:"돋움",dotum,sans-serif;font-size:12px;font-weight:normal;}
+body{background:#fff url(http://deco.daum-img.net/top/2010v2/bg_top_v01.gif) repeat-x;text-align:center;}
+hr{display:none;}
+img,fieldset{border:0;}
+ul,ol,li{list-style:none;}
+
