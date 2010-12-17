@@ -1,0 +1,12 @@
+@import url("css/media3/n_common.css?ver=20101012152422");
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,form,fieldset,p,button{margin:0;padding:0;}
+body,h1,h2,h3,h4,th,td,input{color:#333;font-family:"µ¸¿ò",dotum,sans-serif;font-size:12px;font-weight:normal;}
+body{background:#fff url(/top/2010v2/bg_top_v01.gif) repeat-x;text-align:center;}
+table{background-image:url(/top/2010v2/bg_top_v01.gif);}
+hr{
+    display:none;
+}
+img,fieldset{border:0;}
+ul,ol,li{list-style:none;}
+    /* dklfjalsd */
+
