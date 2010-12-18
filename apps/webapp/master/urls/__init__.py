@@ -12,11 +12,15 @@ from django.contrib import admin
 admin.autodiscover()
 
 import urls_auth, urls_developer, urls_project, urls_dialog
+from IO.version_control.models import FS_VERSION_CONTROL
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = staticfiles_urlpatterns()
 
 urlpatterns += patterns("",
+    url(r"^_media/version_control/(?P<path>.*)$", "django.views.static.serve",
+            {"document_root": FS_VERSION_CONTROL.location, }, name="media_version_control", ),
+
     url(r"^_media/(?P<path>.*)$", "django.views.static.serve",
             {"document_root": settings.MEDIA_ROOT, }, name="media", ),
 
