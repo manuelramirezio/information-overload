@@ -161,7 +161,7 @@ class Payload (models.Model, ) :
 
     message = models.ForeignKey(Message, related_name="payloads", )
 
-    file = models.FileField(upload_to="message_payload", )
+    file = models.FileField(upload_to="message_payload/%Y/%m/%d", )
     filename = models.CharField(max_length=400, )
     mimetype = models.CharField(max_length=200, blank=True, null=True, )
 
