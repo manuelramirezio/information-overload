@@ -115,6 +115,10 @@
         </div>
     </div>
 </div>
+{% if revision.revision_file.file.is_binary %}
+This is binary file, <a href="{{revision.revision_file.content.url}}">view raw file</a>.
+
+{% else %}
 <div class="table">
     {% for l in revision.diff|version_control_diff %}
     <div class="row">
@@ -129,5 +133,7 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
+
 </div>
 {% endblock %}
