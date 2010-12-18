@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedire
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator
+from django.views.decorators.csrf import csrf_exempt
 
 from django_modules.shortcuts import render_to_response
 
@@ -34,8 +35,20 @@ class BaseVersionControlView (BaseProjectView, ) :
         return (request, a, kw, )
 
 class APIRevision (BaseVersionControlView, ) :
-    def post (self, request, ) : # update
-        (_latest_number, _updated_number, ) = self._info.revision_update()
+    @csrf_exempt
+    def dispatch (self, *a, **kw) :
+        return super(APIRevision, self).dispatch(*a, **kw)
+
+    def get (self, request, number=None, ) : # get revision info
+        if number :
+            _revision = get_object_or_404(self._info.revision, number=int(number, ), )
+        else :
+            _revision = self._info.latest_revision
+
+        return HttpResponse(str(_revision.number, ), )
+
+    def post (self, request, number=None, ) : # update
+        (_latest_number, _updated_number, ) = self._info.revision_update(number, )
         if not _updated_number :
             return HttpResponse(u"Not modified: latest revision is %s" %
                 _latest_number, status=304, )
