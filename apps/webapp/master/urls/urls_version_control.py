@@ -5,6 +5,9 @@ from django.conf.urls.defaults import *
 from master.views import views_version_control
 
 urlpatterns = patterns("",
+    url(r"^api/revision/((?P<number>\d+)/|)",
+        views_version_control.APIRevision.as_view(), name="version_control_api_revision", ),
+
     url(r"^api/revision/",
         views_version_control.APIRevision.as_view(), name="version_control_api_revision", ),
 
