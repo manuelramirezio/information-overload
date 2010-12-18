@@ -40,6 +40,7 @@ admin_site_raw.register(models_version_control.Revision, )
 admin_site_raw.register(models_version_control.RevisionFile, )
 admin_site_raw.register(models_version_control.Author, )
 admin_site_raw.register(models_version_control.Message, )
+admin_site_raw.register(models_version_control.Ignore, )
 
 admin_site.register(models_version_control.Info, )
 admin_site.register(models_version_control.Author, AuthorModelAdmin, )

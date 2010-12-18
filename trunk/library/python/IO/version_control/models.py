@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os, datetime, pysvn, logging, StringIO, uuid
+import os, datetime, pysvn, logging, StringIO, uuid, re
 
 from django.conf import settings
 from django.db import models
@@ -8,6 +8,7 @@ from django.db.models import Max, manager, ObjectDoesNotExist, Q
 from django.contrib.auth import models as models_auth
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.storage import FileSystemStorage
+from django.core.urlresolvers import reverse
 
 from django_modules.db.models.query import translate_query
 
@@ -47,7 +48,6 @@ CHOICES_REVISION_FILE_KIND = (
     (REVISION_FILE_KIND_DELETE,     u"Deleted", ),
 )
 DICT_CHOICES_REVISION_FILE_KIND = dict(CHOICES_REVISION_FILE_KIND)
-
 
 class Info (models.Model, ) :
     class Meta :
@@ -157,6 +157,9 @@ class Info (models.Model, ) :
     def revision_update (self, revision_number=None, ) :
         import pysvn
 
+        # make ignores list
+        _ignores = [re.compile("%s" % i.abspath, re.I | re.U, ) for i in self.ignores.all()]
+
         # get the latest updated revision.
         _qs = Revision.objects.filter(
             info__project=self.project,
@@ -239,10 +242,21 @@ class Info (models.Model, ) :
             _count = 1
             for j in _d :
                 _filename = j.path
+                if _ignores :
+                    if True in [bool(i.search(_filename), ) for i in _ignores] :
+                        logging.info("\t> %d: (%d/%d) ignore '%s'" % (
+                                _revision_number,
+                                _count,
+                                len(_d),
+                                _filename,
+                            ),
+                        )
+                        continue
 
                 logging.info("\t> %d: (%d/%d) updating '%s'" % (
                         _revision_number,
-                        _count, len(_d),
+                        _count,
+                        len(_d),
                         _filename,
                     ),
                 )
@@ -326,6 +340,10 @@ class Info (models.Model, ) :
                 )
 
         return (_latest_number, _updated_number, )
+
+class Ignore (models.Model, ) :
+    info = models.ForeignKey(Info, related_name="ignores", )
+    abspath = models.TextField()
 
 class Author (models.Model, ) :
     class Meta :
@@ -569,7 +587,12 @@ class Revision (models_common.ReferenceTag, ) :
 
         return File.objects.filter(_q, ).distinct()
 
-_fs = FileSystemStorage(location=os.path.join(
+class VersionControlFileSystemStorage (FileSystemStorage, ) :
+    def url (self, name, ) :
+        return reverse("media_version_control", kwargs=dict(path=name, ), )
+
+FS_VERSION_CONTROL = VersionControlFileSystemStorage(
+    location=os.path.join(
         settings.VERSION_CONTROL_STORAGE_PATH,
         "revision_file",
     ),
@@ -607,7 +630,7 @@ class RevisionFile (models_common.ReferenceTag, ) :
 
     file = models.ForeignKey(File, related_name="revision_file", )
     content = models.FileField(
-        storage=_fs,
+        storage=FS_VERSION_CONTROL,
         upload_to="%Y/%m/%d",
         blank=True, null=True,
     )
