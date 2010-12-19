@@ -24,7 +24,7 @@ class IMapClient (object, ) :
         self.log = log.Log(self.__class__, )
 
         self._config = config
-        self._mailbox = self._config.MAILBOX
+        self._mailbox = self._config.MAILBOX and self._config.MAILBOX or "INBOX"
 
         self._client = None
         self._flag_default = "\\Flagged"
