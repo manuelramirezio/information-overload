@@ -156,7 +156,7 @@ def revision (parser, token, ) :
 
         _n, _v = _match.groups()
         if _n:
-            _kw[_n] = parser.compile_filter(_v)
+            _kw[str(_n)] = parser.compile_filter(_v)
 
     return RevisionNode(**_kw)
 
