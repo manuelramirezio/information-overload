@@ -31,23 +31,6 @@
 
 {% block nav %}
 <nav>
-    <!--
-    {% if user.is_authenticated %}
-    <div class="align-center">
-        <div class="picture">
-            <a href="{% url developer username=user.username %}"
-                ><img src="{{user.profile.profile_picture}}" /></a>
-        </div>
-        <a href="{% url developer username=user.username %}"
-            >{{user}}</a>
-        |
-        
-        <a href="{% url django.contrib.auth.views.logout %}"> Logout</a>
-    </div>
-
-    {% endif %}
-    -->
-
     <dl class="menu">
     <dd>
         <ol>
@@ -115,7 +98,7 @@
     </dl>
 </nav>
 
-{% block helper %}
+{% if user.is_authenticated %}
 <div class="helper">
     <div class="helper-content">
     <div class="picture box1 align-right">
@@ -138,7 +121,7 @@
     </div>
     </div>
 </div>
-{% endblock %}
+{% endif %}
 {% endblock %}
 
 <div id="content">
