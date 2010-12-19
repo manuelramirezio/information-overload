@@ -74,7 +74,7 @@ class IncludeMediaNode (Node, ) :
         _media = list()
         for _ext, _tag_start, _tag_end in INCLUDE_MEDIA_TYPES :
             try :
-                _o = IncludeNode("\"%s%s\"" % (_fprefix, _ext, ), ).render(context, )
+                _o = IncludeNode(Variable("\"%s%s\"" % (_fprefix, _ext, ), ), ).render(context, )
             except TemplateDoesNotExist :
                 pass
             else :
