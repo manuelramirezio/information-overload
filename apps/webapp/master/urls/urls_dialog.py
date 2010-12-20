@@ -6,6 +6,9 @@ from master.views import views_dialog
 
 class Global (object, ) :
     urlpatterns = patterns("",
+        url(r"^api/label/search/$", views_dialog.APILabelSearch.as_view(),
+            name="dialog_api_label_search", ),
+
         url(r"^api/message/(?P<message_type>.*)/$", views_dialog.APIMessage.as_view(),
             name="dialog_api_message", ),
 

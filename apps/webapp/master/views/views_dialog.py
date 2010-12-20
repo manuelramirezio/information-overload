@@ -14,6 +14,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.test.client import FakePayload
 
 from django_modules.shortcuts import render_to_response
+from django_modules.http import HttpResponseJSON
 from django.views.decorators.csrf import csrf_exempt
 
 from spikeekips import _email
@@ -39,6 +40,28 @@ def get_payload (request, message_uid, filename, ) :
         _payload.filename).encode("utf-8")
 
     return _response
+
+class APILabelSearch (View, ) :
+    @csrf_exempt
+    def dispatch (self, *a, **kw) :
+        return super(APILabelSearch, self).dispatch(*a, **kw)
+
+    def post (self, request, ) :
+        _term = request.POST.get("term", "").strip().lower()
+        _labels_mine = models_dialog.Label.objects.filter(
+            profilemessage__profile=request.user.profile,
+            name__contains=_term,
+        ).distinct().values("pk", "name")
+
+        _labels = [i.get("name") for i in _labels_mine]
+        if len(_labels_mine) < 5 :
+            _labels_etc = models_dialog.Label.objects.filter(
+                name__contains=_term,
+            ).exclude(pk__in=[i.get("pk") for i in _labels_mine]).distinct().values("name")
+
+            _labels.extend([i.get("name") for i in _labels_etc])
+
+        return HttpResponseJSON(_labels, )
 
 class APIMessage (View, ) :
     @csrf_exempt
