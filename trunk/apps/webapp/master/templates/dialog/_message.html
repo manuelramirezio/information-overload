@@ -29,11 +29,7 @@
             <input class="input-labels" type="text" name="tags" data-seperator=","
                 data-url="{% url dialog_message_action message_uid=object.uid %}"
                 data-action="set_labels"
-                value="
-                    {% for l in profile_message.labels.all %}
-                        {{l.name}},
-                    {% endfor %}
-                "
+                value="{% for l in profile_message.labels.all %}{{l.name}}, {% endfor %}"
             />
         </div>
         <div class="box2">

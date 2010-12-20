@@ -66,6 +66,19 @@
                 return item;
             };
 
+            var labels = new Array();
+
+            var update_values = function()
+            {
+                labels = new Array();
+                list.find("span").each(
+                    function()
+                    {
+                        labels.push($(this).html());
+                    }
+                );
+            }
+
             //tag'i ul'ye ekleyen fonksiyon
             var add_tag = function(input) {
                 //eger giris yapilan deger varsa
@@ -110,6 +123,8 @@
                 values = tags;
                 //degerleri tekrar yaz.
                 $(input).val(tags.join(options.seperator));
+
+                update_values();
             };
 
             //gercek input
@@ -160,12 +175,57 @@
                     $(input).width(shadow.width() + zone);
                 };
 
+
+                add.autocomplete({
+                    source: function(request, response)
+                    {
+                        $.post(
+                            "/dialog/api/label/search/",
+                            {
+                                term: request.term
+                            },
+                            function(data)
+                            {
+                                var _labels = new Array();
+                                $.each(
+                                    data,
+                                    function()
+                                    {
+                                        var _s = this.toString();
+                                        if (options.unique && labels.indexOf(_s) > -1)
+                                        {
+                                            return;
+                                        }
+                                        _labels.push(_s);
+                                    }
+                                );
+
+                                if (_labels.length < 1)
+                                {
+                                    return;
+                                }
+
+                                response(_labels);
+                                return;
+                            },
+                            "json"
+                        );
+                    },
+                    select: function(event,ui){
+                        add.val(ui.item.value);
+                        add_tag(add);
+                        return false;
+                    }
+                });
+                        
+
                 //onkeyup'da yalnizca width'i ayarla
                 add.bind('keyup',function(){
                     auto_width(this);
                 })
                 //onkeydown implementasyonu
                 .bind('keydown', function(event) {
+
                     //width
                     auto_width(this);
                     var key = event.keyCode || event.which;
