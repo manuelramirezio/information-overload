@@ -1,0 +1,58 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block title %}{{object}}{% endblock %}
+
+{% block content_title %}{{object}} {% if user.profile == object %}(Me){% endif %}{% endblock %}
+{% block nav_content %}
+<dl class="menu">
+    <dd>
+        <ol>
+            <li>
+                <a href="{% url dialog_developer username=object.username %}"
+                    >View Latest Dialogs of
+                        {% if object.profile %}
+                            {{object.username}}
+                        {% else %}
+                            {{object.email}}
+                        {% endif %}
+                </a>
+            </li>
+        </ol>
+    </dd>
+</dl>
+{% endblock %}
+
+{% block content %}
+<div class="table noborder">
+    <div class="row">
+        <div class="cell">
+            <div class="picture">
+                {% block profile-image %}
+                    <img src="/_m/image/unknown.png" />
+                {% endblock %}
+            </div>
+        </div>
+        <div class="cell">
+            {% block content-profile %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% comment %}
+<h3>Latest Dialogs</h3>
+{% with dialogs as page %}
+    {% with 1 as hide_pagination %}
+    {% with 1 as hide_remain_rows %}
+        {% include "dialog/_dialogs.html" %}
+    {% endwith %}
+    {% endwith %}
+{% endwith %}
+{% endcomment %}
+
+{% endblock %}

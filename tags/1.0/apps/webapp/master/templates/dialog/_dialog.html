@@ -1,0 +1,9 @@
+<div class="dialog">
+{% for message in objects %}
+    {% with object as dialog %}
+        {% with message as object %}
+            {% include "dialog/_message.html" %}
+        {% endwith %}
+    {% endwith %}
+{% endfor %}
+</div>

@@ -1,0 +1,6 @@
+{% load common_tags %}
+<pre>
+Verify this email, '{{email}}' to just click this, <a href="{{request|get_host}}{% url confirm_email key %}">link</a>.
+
+-- I.O.
+</pre>

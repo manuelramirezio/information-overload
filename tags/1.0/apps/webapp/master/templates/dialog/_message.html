@@ -1,0 +1,127 @@
+{% load i18n common_tags developer_tags version_control_tags dialog_tags %}
+{% include_media %}
+
+{% with user|get_profile_message:object as profile_message %}
+
+<a name="{{object.uid}}"></a>
+<div class="table-actions message">
+<div class="control">
+    <span class="subject">
+        <span class="mark_star"><a
+            class="action {{profile_message.is_starred|yesno:"is_starred,"}}"
+            data-is_starred="{{profile_message.is_starred|yesno}}"
+            data-action="{{profile_message.is_starred|yesno:"unstar,star"}}"
+            data-url="{% url dialog_message_action message_uid=object.uid %}"
+            href="{% url dialog_message_action message_uid=object.uid %}"></a>
+        </span>
+        <span class="subject-content">
+            {{object.subject|default:"&lt;No Subject&gt;"}}
+        </span>
+    </span>
+</div>
+<div class="control" style="text-align: right;">
+    <div class="block">
+        <div class="box1"
+            style="
+                text-align: left; max-width: 60%;
+            "
+        >
+            <input class="input-labels" type="text" name="tags" data-seperator=","
+                data-url="{% url dialog_message_action message_uid=object.uid %}"
+                data-action="set_labels"
+                value="
+                    {% for l in profile_message.labels.all %}
+                        {{l.name}},
+                    {% endfor %}
+                "
+            />
+        </div>
+        <div class="box2">
+{% if object.is_top %}
+            <a class="button action"
+                data-is_archived="{{profile_message.is_archived|yesno}}"
+data-action="{% if profile_message.is_archived %}unarchive{% else %}archive{% endif %}"
+                data-label-yes="Move To Inbox"
+                data-label-no="Archive"
+                data-url="{% url dialog_message_action message_uid=object.uid %}"
+                href="#"><label>
+                    {% if profile_message.is_archived %}
+                        Move To Inbox
+                    {% else %}
+                        Archive
+                    {% endif %}
+                </label></a>
+{% endif %}
+            <a class="button connect_with" href="#">Connect With</a>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="row">
+        <div class="cell">
+            <fieldset>
+                <div>
+                    <label>From</label>
+                    <div>
+                        <span class="profile">
+                            {% message_profile object.sender "" "full" %}
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <label>To</label>
+                    <div>
+                        <span class="profile">
+                            {% message_profile object.receiver "" "full" %}
+                        </span>
+                    </div>
+                </div>
+                {% if object.receivers.all.count %}
+                <div>
+                    <label>Other Receivers</label>
+                    <div>
+                        {% for o in object.receivers.all %}
+                        <span class="profile">
+                            {% message_profile o "" "full" %}{% if not forloop.last %},{% endif %}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                <div>
+                    <label>Sent at</label>
+                    <div>
+                        <span class="time_sent">
+                            {{object.time_sent}}
+                            {{object.time_sent|date:"TO"}}
+                            ({{object.time_sent|timesince}} ago)
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell content">
+            <span class="{{object.content_type|split:"/"|join:"_"}}"
+                >{{object.content|safe}}</span>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+{% if message.payloads.all.count > 0 %}
+<div class="control" style="text-align: right;">
+Payloads:
+    {% for payload in message.payloads.all %}
+        <a class="button"
+href="{% url dialog_message_payload message_uid=message.uid filename=payload.filename %}"
+        >{{payload.filename}} ({{payload.file.size|filesizeformat}})</a>
+    {% endfor %}
+</div>
+{% endif %}
+</div>
+
+{% endwith %}

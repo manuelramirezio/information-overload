@@ -1,0 +1,24 @@
+.table
+{
+    font-size: 3em;
+}
+
+.table .row .cell
+{
+    width: 1%;
+    padding: 0.2em 0.5em;
+    vertical-align: bottom;
+    line-height: 0.5em;
+}
+
+.table .row .big
+{
+    font-size: 1.7em;
+}
+
+.table .row .small
+{
+    font-size: 0.7em;
+    padding: 1em 0;
+}
+

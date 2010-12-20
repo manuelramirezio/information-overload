@@ -1,0 +1,70 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags developer_tags version_control_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block title %}Version Control: {{block.super}}{% endblock %}
+{% block content_title %}{{project}} {{to_revision}} {{root.abspath_verbose}}{% endblock %}
+
+{% block nav_content %}
+<div class="help">
+    <div class"join">
+        Add dialog to this file, `<span class="code">{{root.abspath_verbose}}</span>`.
+        Just insert code name in your email message like this.
+        <pre class="box code">{{root.reference_tag}}</pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<fieldset>
+    <div>
+        <label>Project</label>
+        <div>
+            <span class="code">
+                <a href="{% url project project=project.code %}"
+                    >{{project}}</a>
+            </span>
+        </div>
+    </div>
+    <div>
+        <label>File Info</label>
+        <div>
+            <span class="code">{{root.filetype_verbose}}</span>
+        </div>
+    </div>
+    {% if root.filetype == "regular" %}
+    <div>
+        <label>Size</label>
+        <div>
+            <span class="code">{{revisions.0.content.size|filesizeformat}}</span>
+        </div>
+    </div>
+    {% endif %}
+</fieldset>
+
+<h2>Revision History</h2>
+
+<div class="table">
+    {% for revision_file in revisions %}
+        <div class="row {{revision_file.kind}}">
+            <div class="cell">
+{% revision info=info path=root to_revision=revision_file.revision.number %}
+            </div>
+            <div class="cell code">
+                {{revision_file.kind_verbose}}
+            </div>
+            <div class="cell">
+                {% author revision_file.revision.author %}
+            </div>
+            <div class="cell">
+                {{revision_file.revision.time_commit}}
+                ({{revision_file.revision.time_commit|timeago}})
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

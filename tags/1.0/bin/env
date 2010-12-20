@@ -1,0 +1,10 @@
+_cur=`dirname $BASH_SOURCE`/../
+root=`(cd $_cur; pwd)`
+
+python_version=`python  -c "import sys; print '.'.join(map(str, sys.version_info[:2]))"`
+
+PATH=$root/bin:$root/system/bin:$root/library/python/bin:$PATH
+PYTHONPATH=$root/library/python:$root/system/lib/python$python_version/site-packages:$PYTHONPATH
+
+export PATH PYTHONPATH
+

@@ -1,0 +1,42 @@
+.login-form
+{
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.login-form input[type=text],
+.login-form input[type=password]
+{
+    width: 20em;
+}
+
+.login-form fieldset > div > label:first-child
+{
+    min-width: 10em;
+}
+
+.login-form .table ,
+.login-form .table .cell,
+fieldset,
+fieldset div,
+fieldset div label
+{
+    border: 0 !important;
+}
+
+.login-form .table .cell:nth-child(2)
+{
+    vertical-align: middle;
+    width: 20%;
+}
+
+.login-form .table .cell:last-child
+{
+    vertical-align: middle;
+    width: 90%;
+}
+
+.login-form .table .cell:last-child input[type=submit]
+{
+}
+

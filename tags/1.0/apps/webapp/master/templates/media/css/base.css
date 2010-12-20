@@ -1,0 +1,1203 @@
+/*
+symbols and special characters
+    - from http://www.unicodemap.org/range/56/Dingbats/
+
+✖   http://www.unicodemap.org/range/56/Dingbats/
+✚   -
+✪   -
+✫   -
+✩   -
+❝   -
+❞   -
+❮   -
+❯   -
+★   http://www.unicodemap.org/range/55/Miscellaneous_Symbols/
+☆   -
+〇  http://www.unicodemap.org/range/61/CJK_Symbols_and_Punctuation/
+
+
+
+
+*/
+
+/*
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track-piece
+{
+    background-color: #a0a0a0;
+    -webkit-border-radius: 4px;
+    border-top-left-radius: 4px 4px;
+    border-top-right-radius: 4px 4px;
+    border-bottom-right-radius: 4px 4px;
+    border-bottom-left-radius: 4px 4px;
+}
+*/
+
+
+@font-face
+{
+    font-family: "IM Fell English SC";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/_m/font/IMFeENsc28P.ttf") format("truetype");
+}
+
+@font-face
+{
+    font-family: "nyt-franklin-1";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/_m/font/nyt-franklin-1.ttf") format("truetype");
+}
+
+body
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 0.75em;
+    color: #333;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-y: scroll;
+
+    background-color: #fff;
+}
+
+h1, h2, h3, h4
+{
+    font-weight: normal;
+    margin: 0.9em 0 0.2em 0;
+    padding: 0;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.box
+{
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-radius: 0.7em;
+
+    padding: 0.5em 0.7em;
+}
+
+.notyet
+{
+   text-decoration: line-through !important;
+}
+
+.email
+{
+    display: inline-block;
+    color: #333;
+    cursor: pointer;
+    border: 0.1em solid #999;
+    font-size: 1em;
+    padding: 0.2em 0.5em;
+    margin: 0.2em;
+    border-radius: 0.4em;
+    background-color: #FCFFEF;
+    font-family: monospace;
+    word-wrap: break-word;
+}
+
+.email a,
+.email a:hover
+{
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.email:hover
+{
+    background-color: #E1F5DA;
+}
+
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.no-underline {text-decoration: none; }
+.goback
+{
+    font-size: 1.5em;
+}
+
+.datetime
+{
+    cursor: pointer;
+}
+
+a,
+a:visited,
+a:link
+{
+    color: #2C7713;
+}
+
+a:hover
+{
+}
+
+a.action
+{
+    text-decoration: none;
+}
+
+.picture
+{
+    opacity: 0.7;
+    display: block;
+    min-height: 10em;
+}
+.picture:hover
+{
+    opacity: 1.0;
+}
+
+.picture a
+{
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.picture img
+{
+    max-width: 30em;
+    max-height: 30em;
+
+    margin: 4px;
+    -webkit-box-shadow: 0px 0px 2px 2px #d0d0d0;
+    border-radius: 1em;
+}
+
+/* developer */
+a.developer
+{
+    text-decoration: none;
+}
+
+div.developer
+{
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+.no_profile
+{
+    color: #7B4180 !important;
+}
+
+/* developer end */
+
+/* main block */
+header
+{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 0.2em 0;
+    padding: 1em 0 0.5em 0.5em;
+
+    font-size: 1.3em;
+
+    /*
+    border-radius: 0.9em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    */
+
+    /*
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.01, rgba(255,255,255, 0)),
+        color-stop(0.2, #fdfdfd),
+        color-stop(0.3, #fafafa),
+        color-stop(0.99, #dfdfdf)
+    );
+    */
+}
+
+footer
+{
+    display: block;
+    width: auto;
+    padding: 1em 30em 3em 0;
+
+    color: #487858;
+    font-size: 90%;
+    text-align: center;
+}
+
+/* main block end */
+
+/* nav menu */
+nav
+{
+    font-size: 0.99em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    height: auto;
+    width: 28em;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    padding: 1em 0.5em 7em 1em;
+
+    background-color: #e0e0e0;
+
+    /*
+    `box-shadow` has some performance problem in webkit browsers.
+    -webkit-box-shadow: inset 0px 0px 3em #aaa;
+    */
+
+    background-image: -webkit-gradient(
+        linear,
+        right top,
+        left top,
+        color-stop(0.97, #e0e0e0),
+        color-stop(1, #d9d9d9)
+    );
+
+}
+
+dl.menu
+{
+    margin: 0;
+    padding: 0;
+    font-family: nyt-franklin-1;
+}
+
+dl.menu:not(:first-child)
+{
+    /*
+    border-top: 1px solid #ccc;
+    -webkit-box-shadow: #eee 0px 0px 1px 0px;
+    */
+}
+
+dl.menu dt
+{
+    text-transform: uppercase;
+    border-bottom: 1px solid #bbb;
+    -webkit-box-shadow: #eee 0px 1px 0px 0px;
+    padding: 0.3em 0;
+}
+
+dl.menu dt label
+{
+    letter-spacing: 0.09em;
+    font-weight: bold;
+    text-shadow: #bbb 1px 1px 0px;
+}
+
+
+dl.menu dd
+{
+    margin: 0 0 1em 0;
+    padding: 0.5em 0 0 0;
+}
+
+dl.menu dd ol
+{
+    margin: 0;
+    padding: 0;
+}
+
+dl.menu dd ol li,
+dl.menu dd ol li a,
+dl.menu dd ol li a:hover
+{
+    color: #646464 !important;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+
+dl.menu dd ol li:not(:last-child) .seperator
+{
+    border-bottom: 1px solid #bbb;
+    -webkit-box-shadow: #eee 0px 1px 0px 0px;
+    margin: 0;
+    padding: 0;
+}
+
+dl.menu dd ol li
+{
+    list-style: none;
+    margin: 0.1em 0 0.1em 0;
+    padding: 0.5em 1em;
+    text-shadow: #fff 0px 1px 0px;
+    font-weight: bold;
+}
+
+dl.menu dd ol li.selected,
+dl.menu dd ol li.selected a
+{
+    color: #fff !important;
+}
+
+dl.menu dd ol li.selected
+{
+    background-color: #B0B0B0;
+    text-shadow: rgb(119, 119, 119) 0 1px 0;
+    -webkit-border-radius: 0.5em;
+}
+
+dl.menu dd ol li input[type=search]
+{
+    width: 100%;
+}
+
+div.helper
+{
+    position: fixed;
+    bottom: 0;
+    right: 2em;
+    width: 26em;
+    height: 10em;
+
+    z-index: 2;
+    background-color: #e0e0e0;
+
+}
+
+div.helper .helper-content
+{
+    display: -webkit-box;
+    border-top: 1px solid #ccc;
+    -webkit-box-shadow: #eee 0px 0px 2px 0px;
+
+    margin: 1em;
+    padding: 1em 0;
+}
+
+div.helper .box1
+{
+    -webkit-box-flex: 1;
+}
+
+div.helper .box2
+{
+    -webkit-box-flex: 2;
+}
+
+
+div.helper .picture
+{
+    text-align: right;
+}
+
+div.helper .picture img
+{
+    max-width: 6em;
+    max-height: 6em;
+}
+
+div.height > .picture > img
+{
+}
+
+nav .item:before
+{
+    content: "● "
+}
+
+nav .help
+{
+    font-style: italic;
+    padding: 0.5em;
+    margin: 0 0 1em 0;
+
+    background-color: #e9e9e9;
+
+    border: 1px solid #ccc;
+    -webkit-box-shadow: #eee 0px 0px 1px 0px;
+    border-radius: 0.5em;
+}
+
+nav .help p
+{
+    margin: 0;
+}
+
+nav .box
+{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #FCFFEF;
+    border: 0.1em solid #999;
+    border-radius: 0.4em;
+    color: #408C1B;
+}
+
+/* nav menu end */
+
+/* form menu */
+input
+{
+    font-family: monospace;
+    color: #999;
+}
+
+input:focus
+{
+    color: #333;
+}
+
+input[type=search],
+input[type=tel],
+input[type=url],
+input[type=email],
+input[type=datetime],
+input[type=date],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime-local],
+input[type=number],
+input[type=range],
+input[type=color],
+input[type=text],
+input[type=password]
+{
+    border: 1px solid #999;
+    background-color: #fafafa;
+    outline: none;
+    padding: 0.3em 0.5em;
+}
+
+input[type=submit],
+button,
+a.button
+{
+    display: inline-block;
+    color: #333;
+    cursor: pointer;
+    border: 0.1em solid #999;
+    font-size: 1em;
+    padding: 0.3em 0.5em;
+    border-radius: 0.4em;
+    background-color: #f0f0f0;
+    font-family: monospace;
+}
+
+input[type=submit]:hover,
+button:hover,
+a.button:hover
+{
+    background-color: #E1F5DA;
+}
+
+input[disabled],
+a[disabled]
+{
+    color: #a0a0a0;
+}
+
+input[required]
+{
+    border-color: #555;
+    border-width: 0.2em;
+}
+
+fieldset
+{
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-radius: 0.7em;
+
+    display: table;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset > div
+{
+    display: table-row;
+    margin: 0;
+}
+
+fieldset > div:first-child > div:nth-child(2)
+{
+    border: 0;
+}
+
+fieldset > div:first-child > label:first-child
+{
+    border-width: 0 0.1em 0 0;
+}
+
+fieldset > div > label:first-child
+{
+    display: table-cell;
+
+    white-space: nowrap;
+    min-width: 7em;
+    text-align: right;
+    font-style: italic;
+
+    padding: 0.5em;
+
+    border-width: 0.1em 0.1em 0 0;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+/*
+fieldset > div > label:after
+{
+    content: ": ";
+}
+*/
+
+fieldset > div > div
+{
+    display: table-cell;
+    width: 100%;
+    padding: 0.5em;
+
+    vertical-align: top;
+
+    border-width: 0.1em 0 0 0;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+fieldset > div > div > p
+{
+    display: inline;
+}
+
+form .submit-row
+{
+    margin: 0.5em 0;
+    text-align: right;
+}
+
+/* form menu end */
+
+.logo
+{
+    font-family: "IM Fell English SC";
+    text-shadow: 2px 2px 2px #888;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    color: #555;
+}
+
+a.logo:visited,
+a.logo:link
+{
+    color: #555;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+/* table view */
+.table
+{
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-radius: 0.7em;
+}
+
+.noborder,
+.noborder .row,
+.noborder .row .cell
+{
+    border: 0 !important;
+}
+
+.table .empty
+{
+    background-color: #fafafa;
+}
+
+.table .row
+{
+    display: table-row;
+    margin: 0;
+    padding: 0;
+}
+
+.table .row .head
+{
+    display: table-cell;
+    padding: 0.2em 0.5em;
+
+    border-width: 0.1em 0.1em 0 0;
+    border-style: solid;
+    border-color: #efefef;
+
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+
+    background-color: #f9f9f9;
+    vertical-align: middle;
+}
+
+.table .row .cell
+{
+    display: table-cell;
+    padding: 0.4em 0.5em;
+
+    border-width: 0.1em 0.1em 0 0;
+    border-style: solid;
+    border-color: #efefef;
+
+    vertical-align: top;
+}
+
+.table .row .cell > fieldset
+{
+    margin: 0.2em 0.5em;
+    width: auto;
+}
+
+.table .row:first-child .cell:first-child
+{
+    border-top-left-radius: 0.7em;
+}
+
+.table .row:first-child .cell:last-child
+{
+    border-top-right-radius: 0.7em;
+}
+
+.table .row:last-child .cell:first-child
+{
+    border-bottom-left-radius: 0.7em;
+}
+
+.table .row:last-child .cell:last-child
+{
+    border-bottom-right-radius: 0.7em;
+}
+
+/* table view end */
+
+/* diff */
+.code
+{
+    font-family: Courier;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.code .caption
+{
+    margin: 0.5em 1.2em;
+    font-style: italic;
+}
+
+.code .table
+{
+    border-width: 0.1em 0 0.1em 0;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.code .row
+{
+    line-height: 1.5em;
+}
+
+
+.code .cell
+{
+    border-width: 0.1em 0 0 0 !important;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+
+.code .row .linenumber,
+.code .row .content .diff
+{
+    padding: 0.1em 0.5em;
+}
+
+.code .row:first-child .cell
+{
+    border-width: 0 0 0 0 !important;
+}
+
+.code .row .linenumber
+{
+    width: 1em;
+    text-align: right;
+}
+
+.code .row .content
+{
+    text-align: left;
+    padding: 0;
+}
+
+.code .row .content .diff
+{
+    white-space: pre-wrap;
+}
+
+.code .row .content .none:before
+{
+    width: 2em;
+    display: inline-block;
+    font-family: monospace;
+    content: "  ";
+}
+
+.deleted, .delete
+{
+    background-color: #F5EACB;
+}
+
+.code .row .content .deleted:before
+{
+    width: 2em;
+    display: inline-block;
+    font-family: monospace;
+    content: "↩  ";
+}
+
+.modified
+{
+    background-color: #FCE6F9;
+}
+
+.code .row .content .modified:before
+{
+    width: 2em;
+    font-family: monospace;
+    display: inline-block;
+    content: "꓃";
+}
+
+.added
+{
+    background-color: #D4F5CE;
+}
+
+.code .row .content .added:before
+{
+    width: 2em;
+    font-family: monospace;
+    display: inline-block;
+    content: "↪ ";
+}
+
+/* diff end */
+
+#content
+{
+    margin: 0em 29em 5em 0;
+    min-width: 40em;
+    padding: 0 1em;
+    /*
+    -webkit-box-shadow: inset 0px 0px 2em #c0c0c0;
+    */
+}
+
+#content-main
+{
+}
+
+/* message */
+.msg
+{
+    display: inline-block;
+    font-style: italic;
+}
+
+.msg .info,
+.msg .note,
+.msg .debug,
+.msg .warning,
+.msg .error
+{
+    display: inline-block;
+    min-height: 1.5em;
+    vertical-align: middle;
+    padding: 0.2em 0.5em;
+}
+
+.msg .info *,
+.msg .note *,
+.msg .debug *,
+.msg .warning *,
+.msg .error *
+{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.msg .note {color: #666;  }
+.msg .info { color: #678EBB; }
+.msg .error { color: #99332B; }
+.msg .debug { color: #A1A54F; }
+.msg .warning { color: #E09384; }
+
+.msg .info:before
+{
+    content: "Info: ";
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.msg .error:before
+{
+    content: "Error: ";
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.msg .debug:before
+{
+    content: "Debug: ";
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.msg .warning:before
+{
+    content: "Warning: ";
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.msg .note:before
+{
+    content: "Note: ";
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+#service-messages
+{
+    width: 100%;
+    z-index: 2;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: #e0e0e0;
+}
+
+#service-messages .msg > *
+{
+    width: 100%;
+    padding: 0.5em 2em;
+}
+
+/* message end */
+
+/* table-actions */
+.table-actions
+{
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-radius: 0.7em;
+
+    margin-bottom: 0.5em;
+}
+
+.table-actions > .table
+{
+    border: 0;
+    border-radius: 0 !important;
+}
+
+.table-actions > .table .cell
+{
+}
+
+.table-actions > .table .row .cell:last-child
+{
+    border-width: 0.1em 0 0 0;
+}
+
+.table-actions > .table .row:first-child .cell
+{
+    border-width: 0 0.1em 0 0;
+}
+
+.table-actions .control
+{
+    background-color: #fafafa;
+
+    border-width: 0 0 0.1em 0;
+    border-style: solid;
+    border-color: #e0e0e0;
+
+    padding: 0.5em 0.5em;
+}
+
+.table-actions .control:first-child
+{
+    border-width: 0 0 0.1em 0;
+    border-top-left-radius: 0.7em;
+    border-top-right-radius: 0.7em;
+}
+
+.table-actions .control:first-child > .table
+{
+    margin-top: 0.5em;
+}
+
+.table-actions .control:last-child
+{
+    border-width: 0.1em 0 0 0;
+    border-bottom-left-radius: 0.7em;
+    border-bottom-right-radius: 0.7em;
+}
+
+.table-actions .control a
+{
+    text-decoration: none;
+}
+
+.table-actions > .table > .row:first-child > .cell
+{
+}
+
+.table-actions > .table > .row:last-child > .cell
+{
+}
+
+.table-actions > .table > .empty:first-child > .cell
+{
+    padding: 0.4em 0.5em;
+}
+
+.table-actions > .table > .empty:last-child > .cell
+{
+    padding: 0.4em 0.5em;
+}
+
+.pagination
+{
+    display: -webkit-box;
+    color: #90C25F;
+}
+
+.pagination .box1
+{
+    -webkit-box-flex: 1;
+}
+
+.pagination .box2
+{
+    -webkit-box-flex: 2;
+}
+
+/* table-actions end */
+
+/* message */
+.message
+{
+}
+
+.message .mark_star
+{
+    display: inline-block;
+}
+
+.message .mark_star a:hover:before
+{
+    color: #DDD166;
+    content: "★";
+}
+
+.message .mark_star a:before
+{
+    content: "☆ ";
+    font-size: 1.5em;
+    color: #d0d0d0;
+    text-shadow: #bbb 1px 1px 0px;
+}
+
+.message .mark_star a.is_starred:before
+{
+    content: "★";
+    color: #D45922;
+}
+
+.message .subject
+{
+}
+
+header .subject
+{
+    display: block;
+    font-weight: bold;
+}
+
+.message .count
+{
+    font-size: 0.4em;
+    vertical-align: super;
+}
+
+.message .subject a
+{
+    text-decoration: none;
+}
+
+.message .content
+{
+    padding: 0.5em;
+}
+
+.message .content .text_plain
+{
+    display: block;
+    white-space: pre-wrap;
+}
+
+.message .content .text_html blockquote[type=cite]
+{
+    border-width: 0 0 0 0.1em;
+    border-style: solid;
+    border-color: #500050;
+    padding-left: 0.5em;
+    color: #500050;
+}
+
+.message .control .block
+{
+    display: -webkit-box;
+}
+
+.message .control .block .box1
+{
+    -webkit-box-flex: 1;
+}
+
+.message .control .block .box2
+{
+    -webkit-box-flex: 2;
+}
+
+
+
+/* message end */
+
+/* dialog */
+.dialog .message .subject
+{
+    font-weight: bold;
+}
+
+/* dialog end */
+
+/* dialogs */
+.dialogs
+{
+    max-width: 80em !important;
+}
+
+.dialogs .message .subject
+{
+    display: inline-block;
+    font-weight: normal;
+    height: 1.5em;
+    line-height: 1.4em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.dialogs .message a
+{
+    background-color: transparent;
+}
+
+.dialogs .message
+{
+    cursor: pointer;
+}
+
+.dialogs .message:hover
+{
+    background-color: #EBFCDB;
+}
+
+.dialogs .empty:hover
+{
+    background-color: #fafafa !important;
+}
+
+.dialogs .message .profile
+{
+    display: inline-block;
+    overflow-x: hidden;
+    color: #777;
+    width: 10em;
+    height: 1.5em;
+    line-height: 1.4em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.dialogs .message .time_sent
+{
+    color: #777;
+    width: 100%;
+    min-width: 13em;
+}
+
+.dialogs .message .profile img
+{
+    max-width: 2em;
+    max-height: 1em;
+
+    -webkit-box-shadow: none;
+    border-radius: 0.3em;
+}
+
+/* dialogs end */
+
+/* version control */
+.navigate-revision
+{
+    background-color: #f9f9f9;
+}
+
+a.revision
+{
+    text-decoration: none;
+}
+
+
+/* version control end */

@@ -1,0 +1,139 @@
+{% extends "base_site.html" %}
+{% load i18n common_tags developer_tags version_control_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% include_media %}
+{% endblock %}
+
+{% block title %}Version Control: {{block.super}}{% endblock %}
+{% block content_title %}
+    {{project}} {{to_revision}} {{root.abspath_verbose}}
+{% endblock %}
+
+{% block nav_content %}
+<div class="help">
+    <p class"join">
+        Add dialog to this revision, `<span class="code">{{to_revision}}</span>`.
+        Just insert code in your email message like this.
+        <pre class="box code">{{to_revision.reference_tag}}</pre>
+    </p>
+    <p class"join">
+    Or,
+        add dialog to this file, `<span class="code">{{root.abspath_verbose}}</span>`.
+        Just insert code name in your email message like this.
+        <pre class="box code">{{revision.revision_file.reference_tag}}</pre>
+    </p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="table" style="border: 0;">
+    <div class="row">
+        <div class="cell" style="width: 50%; text-align: left; border:0;">
+        ❮
+        {% if revision.revision_file.previous %}
+{% revision info=info path=root to_revision=revision.revision_file.previous.revision.number %}
+        {% else %}
+        None
+        {% endif %}
+        </div>
+        <div class="cell" style="width: 5%; text-align: center; border:0;">
+{% revision info=info path=root to_revision=revision.revision_file.revision.number %}
+        </div>
+        <div class="cell" style="width: 50%; text-align: right; border:0;">
+        {% if revision.revision_file.next %}
+{% revision info=info path=root to_revision=revision.revision_file.next.revision.number %}
+        {% else %}
+            None
+        {% endif %}
+        ❯
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+    <fieldset>
+        <div>
+            <label>Project</label>
+            <div>
+                <span class="code">
+                    <a href="{% url project project=project.code %}"
+                        >{{project}}</a>
+                </span>
+            </div>
+        </div>
+        <div>
+            <label>Author</label>
+            <div>
+                {% author revision.revision_file.revision.author %}
+            </div>
+        </div>
+        <div>
+            <label>Commited at</label>
+            <div>
+                {{revision.revision_file.revision.time_commit}}
+                ({{revision.revision_file.revision.time_commit|timesince}} ago)
+            </div>
+        </div>
+    </fieldset>
+
+    <h2>Revision Log</h2>
+    <p class="code"
+        style="
+            border-width: 0.1em 0 0.1em 0;
+            border-style: solid;
+            border-color: #d0d0d0;
+            margin: 0;
+            padding: 0.5em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        "
+    >{{revision.revision_file.revision.log}}</p>
+
+<h2>Diff</h2>
+<div class="code">
+<div class="caption">
+    <div class="table" style="border: 0;">
+        <div class="row">
+            <div class="cell">
+<a href="{% url version_control_file name=info.name project=project.code path=revision.revision_file.file.abspath_verbose %}"
+                >{{revision.revision_file.file.abspath_verbose}}</a>
+                &lt;{{revision.revision_file.kind_verbose}}&gt;
+            </div>
+            <div class="cell">
+                <a href="{% url version_control_file name=info.name project=project.code path=revision.revision_file.file.abspath_verbose %}"
+                >Show Revisions</a>
+            </div>
+            <div class="cell">
+{% revision info=info to_revision=revision.revision_file.previous.revision.number %}
+❯
+{% revision info=info to_revision=revision.revision_file.revision.number %}
+            </div>
+        </div>
+    </div>
+</div>
+{% if revision.revision_file.file.is_binary %}
+This is binary file, <a href="{{revision.revision_file.content.url}}">view raw file</a>.
+
+{% else %}
+<div class="table">
+    {% for l in revision.diff|version_control_diff %}
+    <div class="row">
+        <div class="cell linenumber">
+            {{forloop.counter}}
+        </div>
+        <div class="cell content">
+            {% for i in l %}
+            <div class="diff {{i.tag}}">{{i.content}}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+</div>
+{% endblock %}
