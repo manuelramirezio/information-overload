@@ -118,8 +118,6 @@ class Info (models.Model, ) :
                 ),
             )[0].number
         except pysvn.ClientError :
-            import traceback
-            traceback.print_exc()
             return None
 
         if _number < 0 :
