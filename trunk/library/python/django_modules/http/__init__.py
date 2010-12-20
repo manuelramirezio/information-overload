@@ -36,9 +36,6 @@ class HttpResponseListJSON (HttpResponse) :
 class HttpResponseJSON (HttpResponse) :
 
     def __init__ (self, content="", mimetype="application/json", status=200, content_type=None, ) :
-        if settings.DEBUG :
-            mimetype = "text/html"
-
         super(HttpResponseJSON, self).__init__(content=_dumps(content), mimetype=mimetype, status=status, content_type=content_type, )
 
 class HttpResponseGoBack (HttpResponseRedirect_django) :
